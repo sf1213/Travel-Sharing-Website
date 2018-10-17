@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var express         = require("express"),
     app             = express(),
     bodyParser      = require("body-parser"),
@@ -22,7 +24,6 @@ var campgroundRoutes = require("./routes/campground"),
 var url = process.env.DATABASEURL || "mongodb://localhost:27017/yelp_camp";
 mongoose.connect(url);
 //mongoose.connect("mongodb://songfang:121391ylf@ds033317.mlab.com:33317/yelpcamp");
-
 //mongoose.connect("mongodb://localhost:27017/yelp_camp");
 //mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true });
 
@@ -34,6 +35,7 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine","ejs");
 app.use(methodOverride("_method"));
 app.use(flash());
+app.locals.moment = require('moment');
 // seedDB(); //seed the database
 
 //Passport Configuration
@@ -66,9 +68,9 @@ app.use("/campgrounds", campgroundRoutes);
 
 
 
-// -----------------------
-// ---chat--------------
-// ----------------------
+// ---------------------------------
+// ---chat-------------------------
+// --------------------------------
 var server = require("http").createServer(app);
 var io = require("socket.io").listen(server);
 
