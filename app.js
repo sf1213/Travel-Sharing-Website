@@ -9,15 +9,15 @@ var express         = require("express"),
     Comment         = require("./models/comment"),
     User            = require("./models/user"),
     methodOverride  = require("method-override"),
-    flash           = require("connect-flash")
+    flash           = require("connect-flash");
     
 
 
 //require routes
 var campgroundRoutes = require("./routes/campground"),
     commentRoutes    = require("./routes/comments"),
-    indexRoutes      = require("./routes/index")
-    // chatroomRoutes   = require("./routes/chatroom")
+    indexRoutes      = require("./routes/index");
+
 
 var url = process.env.DATABASEURL || "mongodb://localhost:27017/yelp_camp";
 mongoose.connect(url);
@@ -61,7 +61,7 @@ app.use(function(req, res, next){ //apply to all
 app.use("/", indexRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds", campgroundRoutes);
-// app.use("/", chatroomRoutes)
+
 
 
 
