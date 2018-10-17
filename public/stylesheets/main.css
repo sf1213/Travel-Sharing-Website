@@ -9,3 +9,7 @@
 .delete-form {
     display: inline;
 }
+
+#messageArea{
+    display: none;
+}
